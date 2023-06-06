@@ -1,0 +1,160 @@
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  commentstyle=\color{green!60!black},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  backgroundcolor=\color{gray!10},
+  frame=tb,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  escapeinside={(*@}{@*)},
+  tabsize=4
+}
+\documentclass[8pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{tcolorbox}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{float} % to control float positions
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{geometry} % to adjust margins
+\geometry{a4paper, margin=1in}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\geometry{margin=1in} % set margins to 1 inch
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Atharva Kulkarni \textbf{-Experiment No: 01}}}
+\fancyhead[R]{\thepage}
+\usepackage{mdframed}
+\begin{document}
+% %box ....................................................
+\begin{tcolorbox}[colback=white!10,height=4.3cm]
+
+\thispagestyle{empty} % remove header from the first page
+
+
+\makebox[\textwidth]{%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{BTCOL606: Machine Learning Lab} \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{(Date: 15/05/2023)}\\
+  \end{tabular}%
+}
+
+\vspace{1.2cm}
+\makebox[\textwidth][c]{\textbf{\LARGE Experiment NO : 01}} % center the experiment number
+
+\vspace{1cm}
+
+\makebox[\textwidth]{%
+  \begin{tabular}[t]{@{}ll@{}}
+
+    \textit{Instructor:} Mr. Katkar Atish R. \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[t]{@{}ll@{}}
+    \textit{Name:} Atharva Kulkarni, Roll No: CS3266 \\
+    
+  \end{tabular}%
+}
+
+\end{tcolorbox}
+
+
+
+\begin{flushleft}
+\vspace{7mm}
+\section*{AIM}
+Implement and demonstrate the FIND-S algorithm for finding the most specific hypothesis based on a given set of training data samples. Read the training data from a .CSV file.
+
+\section*{INTRODUCTION TO FIND-S ALGORITHM}
+The FIND-S algorithm is a search algorithm designed to efficiently search through a sorted list of data elements to find the index of a specific target element. The acronym FIND-S stands for "Fast Index-based Non-recursive Discrete Search." This algorithm works by recursively dividing the search space into smaller and smaller subspaces until the target element is found or it is determined that the element does not exist in the list.
+
+\vspace{5mm}
+The FIND-S algorithm is particularly useful when searching through large sorted datasets, where linear search algorithms would be too slow. This algorithm has a time complexity of O(log n), which means that it can efficiently search through datasets with millions or even billions of elements in a reasonable amount of time.
+
+\section*{DATASET DESCRIPTION}
+The FIND-S algorithm is not a dataset, but rather a search algorithm designed to search through sorted datasets. The algorithm works by recursively dividing the search space into smaller and smaller subspaces until the target element is found or it is determined that the element does not exist in the list.
+\
+\vspace{5mm}
+To use the FIND-S algorithm, you would need a sorted dataset to search through, as it is designed specifically for searching through sorted lists of data elements. The dataset can be any type of data that can be sorted, such as numerical data, text data, or any other type of structured data.
+
+\vspace{75mm}
+\section*{IMPLEMENTATION CODE FOR FIND-S ALGORITHM}
+\vspace{5mm}
+\begin{lstlisting}
+import csv
+a = []
+with open('enjoysport.csv', 'r') as csvfile:
+    next(csvfile)
+    for row in csv.reader(csvfile):
+        a.append(row)
+print(a)
+
+print("\nThe total number of training instances are:", len(a))
+
+num_attribute = len(a[0]) - 1
+
+print("\nThe initial hypothesis is:")
+hypothesis = ['0'] * num_attribute
+print(hypothesis)
+
+for i in range(0, len(a)):
+    if a[i][num_attribute] == 'yes':
+        print("\nInstance", i+1, "is", a[i], "and is a Positive Instance")
+        for j in range(0, num_attribute):
+            if hypothesis[j] == '0' or hypothesis[j] == a[i][j]:
+                hypothesis[j] = a[i][j]
+            else:
+                hypothesis[j] = '?'
+        print("The hypothesis for the training instance", i+1, "is:", hypothesis, "\n")
+    if a[i][num_attribute] == 'no':
+        print("\nInstance", i+1, "is", a[i], "and is a Negative Instance Hence Ignored")
+        print("The hypothesis for the training instance", i+1, "is:", hypothesis, "\n")
+
+print("\nThe Maximally specific hypothesis for the training instance is", hypothesis)
+\end{lstlisting}
+\vspace{150mm}
+\section*{Output of FIND-S Algorithm}
+\begin{center}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.0\textwidth,height=0.3\textheight]{ass1op1.png}
+    \caption{FIND-S Output}
+\end{figure}
+\end{center}
+
+\section*{CONCLUSION}
+The FIND-S algorithm is a fast and efficient search algorithm that is designed to search through sorted lists of data elements. By dividing the search space into smaller and smaller subspaces, the algorithm can quickly locate the index of a target element, even in very large datasets. Overall, understanding the FIND-S algorithm can be very beneficial for computer science students and professionals, as it can be used to optimize and speed up a wide range of search and retrieval tasks.
+
+\end{flushleft}
+
+\end{document}

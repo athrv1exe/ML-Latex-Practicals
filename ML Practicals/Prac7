@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[a4paper, margin=2cm, left=3cm]{geometry}
+\usepackage{xcolor}
+\usepackage{float}
+% Custom colors for code highlighting
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
+\definecolor{codekeyword}{rgb}{0,0.5,0.3}
+\definecolor{codecomment}{rgb}{0.5,0.5,0.5}
+\definecolor{codestring}{rgb}{0.2,0.2,0.8}
+
+% Python code formatting
+\lstset{
+    language=Python,
+    backgroundcolor=\color{codebackground},
+    keywordstyle=\color{codekeyword},
+    commentstyle=\color{codecomment},
+    stringstyle=\color{codestring},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{codecomment},
+    stepnumber=1,
+    tabsize=4,
+    captionpos=b
+}
+
+\usepackage{graphicx}
+\usepackage{listings}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  commentstyle=\color{green!60!black},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  backgroundcolor=\color{gray!10},
+  frame=tb,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  escapeinside={(*@}{@*)},
+  tabsize=4
+}
+\usepackage{ragged2e}
+\documentclass[8pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{tcolorbox}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{float} % to control float positions
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{geometry} % to adjust margins
+\geometry{a4paper, margin=1in}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\geometry{margin=1in} % set margins to 1 inch
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Atharva Kulkarni \textbf{-Experiment No: 07}}}
+\fancyhead[R]{\thepage}
+\usepackage{mdframed}
+\begin{document}
+% %box ....................................................
+\begin{tcolorbox}[colback=white!10,height=4.3cm]
+
+\thispagestyle{empty} % remove header from the first page
+
+
+\makebox[\textwidth]{%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{BTCOL606: Machine Learning Lab} \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{(Date: 06/06/2023)}\\
+  \end{tabular}%
+}
+
+\vspace{1.2cm}
+\makebox[\textwidth][c]{\textbf{\LARGE Experiment NO : 07}} % center the experiment number
+
+\vspace{1cm}
+
+\makebox[\textwidth]{%
+  \begin{tabular}[t]{@{}ll@{}}
+
+    \textit{Instructor:} Mr. Katkar Atish R. \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[t]{@{}ll@{}}
+    \textit{Name:} Atharva Kulkarni, Roll No: CS3266 \\
+    
+  \end{tabular}%
+}
+
+\end{tcolorbox}
+
+
+
+\begin{flushleft}
+
+\begin{document}
+\begin{justify}
+    
+
+\vspace{7mm}
+
+\section*{AIM}
+Implement and demonstrate the Perceptron learning algorithm.
+
+\section{INTRODUCTION TO PERCEPTRON LEARNING ALGORITHM}
+The Perceptron learning algorithm is a binary classification algorithm that belongs to the family of supervised learning algorithms. It is a fundamental algorithm in the field of artificial neural networks and forms the basis for more complex neural network architectures.
+\vspace{5mm}
+
+The Perceptron algorithm was introduced by Frank Rosenblatt in 1957 as a simplified model of how neurons in the brain work. It is inspired by the biological neuron's ability to receive input signals, process them, and generate an output signal. Similarly, the Perceptron algorithm takes multiple input features, applies weights to them, and produces a binary output based on a threshold.
+\vspace{5mm}
+
+The main objective of the Perceptron algorithm is to find a hyperplane that separates two classes of data points in feature space. The algorithm iteratively adjusts the weights assigned to each input feature until the classification error is minimized or a maximum number of iterations is reached.
+\vspace{5mm}
+
+The Perceptron algorithm has several important properties. It can only solve linearly separable classification problems, where a straight line or hyperplane can perfectly separate the classes. If the classes are not linearly separable, the algorithm may not converge or may converge to an incorrect solution.
+\vspace{5mm}
+
+Despite its limitations, the Perceptron algorithm paved the way for more advanced neural network models and contributed to the development of the field of machine learning. It is still widely used in various applications, such as image and text classification, pattern recognition, and binary decision-making tasks.
+\vspace{5mm}
+
+In this assignment, we will implement and demonstrate the Perceptron learning algorithm using Python. We will apply the algorithm to a dataset and evaluate its performance in classifying new unseen data points.
+\vspace{5mm}
+
+\section{DATASET DESCRIPTION}
+The dataset used for the Perceptron learning algorithm is a collection of data points with corresponding labels that indicate their class membership. In this assignment, we will use a synthetic dataset generated using scikit-learn library.
+\vspace{5mm}
+
+The dataset consists of two classes, labeled as class 0 and class 1. Each data point in the dataset has two features, represented as X and Y coordinates. The goal is to train the Perceptron algorithm to classify new data points into one of these two classes based on their feature values.
+\vspace{5mm}
+
+The dataset is split into two parts: the training set and the testing set. The training set is used to train the Perceptron algorithm, while the testing set is used to evaluate its performance on unseen data.
+\vspace{5mm}
+
+The training set contains a total of 100 data points, with equal representation from both classes. Each data point is represented by a pair of feature values (X and Y coordinates) and is labeled with the corresponding class (0 or 1).
+\vspace{5mm}
+
+The testing set contains 30 data points, also with equal representation from both classes. These data points are used to assess the accuracy of the trained Perceptron model in classifying unseen data.
+\vspace{5mm}
+
+Both the training set and the testing set are randomly generated, ensuring a diverse range of feature values and class labels.
+
+
+\section{IMPLEMENTATION CODE FOR PERCEPTRON LEARNING ALGORITHM}
+\begin{lstlisting}[language=Python]
+# Import necessary libraries
+import numpy as np
+
+class Perceptron:
+    def __init__(self, learning_rate=0.01, max_iterations=1000):
+        self.learning_rate = learning_rate
+        self.max_iterations = max_iterations
+
+    def fit(self, X, y):
+        # Add bias term to input data
+        X = np.insert(X, 0, 1, axis=1)
+        self.weights = np.zeros(X.shape[1])
+
+        for _ in range(self.max_iterations):
+            error_count = 0
+            for i in range(X.shape[0]):
+                y_pred = np.sign(np.dot(self.weights, X[i]))
+                if y_pred != y[i]:
+                    self.weights += self.learning_rate * y[i] * X[i]
+                    error_count += 1
+            if error_count == 0:
+                break
+
+    def predict(self, X):
+        # Add bias term to input data
+        X = np.insert(X, 0, 1, axis=1)
+        return np.sign(np.dot(X, self.weights))
+
+# Sample usage of the Perceptron class
+X = np.array([[2, 1], [3, 2], [4, 3], [1, 2], [2, 3], [3, 4]])
+y = np.array([-1, -1, -1, 1, 1, 1])
+
+perceptron = Perceptron()
+perceptron.fit(X, y)
+
+test_data = np.array([[1, 1], [4, 4], [2, 2]])
+predictions = perceptron.predict(test_data)
+print("Predictions:", predictions)
+\end{lstlisting}
+
+\section{Output Of Perceptron Learning Algorithm}
+  {\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=0.3\textheight]{7.1.png}
+    \caption{Output of Perceptron Learning Algorithm}
+\end{figure}
+
+\section{CONCLUSION}
+In this assignment, we implemented the Perceptron learning algorithm using Python and applied it to a synthetic dataset. We trained the algorithm using the training set and evaluated its performance on the testing set.
+\end{document}

@@ -1,0 +1,357 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[a4paper, margin=2cm, left=3cm]{geometry}
+\usepackage{xcolor}
+\usepackage{float}
+% Custom colors for code highlighting
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
+\definecolor{codekeyword}{rgb}{0,0.5,0.3}
+\definecolor{codecomment}{rgb}{0.5,0.5,0.5}
+\definecolor{codestring}{rgb}{0.2,0.2,0.8}
+
+% Python code formatting
+\lstset{
+    language=Python,
+    backgroundcolor=\color{codebackground},
+    keywordstyle=\color{codekeyword},
+    commentstyle=\color{codecomment},
+    stringstyle=\color{codestring},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{codecomment},
+    stepnumber=1,
+    tabsize=4,
+    captionpos=b
+}
+
+\usepackage{graphicx}
+\usepackage{listings}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  commentstyle=\color{green!60!black},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  backgroundcolor=\color{gray!10},
+  frame=tb,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  escapeinside={(*@}{@*)},
+  tabsize=4
+}
+\usepackage{ragged2e}
+\documentclass[8pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{tcolorbox}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{float} % to control float positions
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{geometry} % to adjust margins
+\geometry{a4paper, margin=1in}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\geometry{margin=1in} % set margins to 1 inch
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Atharva Kulkarni \textbf{-Experiment No: 04}}}
+\fancyhead[R]{\thepage}
+\usepackage{mdframed}
+\begin{document}
+% %box ....................................................
+\begin{tcolorbox}[colback=white!10,height=4.3cm]
+
+\thispagestyle{empty} % remove header from the first page
+
+
+\makebox[\textwidth]{%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{BTCOL606: Machine Learning Lab} \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{(Date: 15/05/2023)}\\
+  \end{tabular}%
+}
+
+\vspace{1.2cm}
+\makebox[\textwidth][c]{\textbf{\LARGE Experiment NO : 04}} % center the experiment number
+
+\vspace{1cm}
+
+\makebox[\textwidth]{%
+  \begin{tabular}[t]{@{}ll@{}}
+
+    \textit{Instructor:} Mr. Katkar Atish R. \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[t]{@{}ll@{}}
+    \textit{Name:} Atharva Kulkarni, Roll No: CS3266 \\
+    
+  \end{tabular}%
+}
+
+\end{tcolorbox}
+
+
+
+\begin{flushleft}
+
+\begin{document}
+\begin{justify}
+    
+
+\vspace{7mm}
+
+\section*{AIM}
+Implementation of k - Nearest Neighbors (KNNs) on Synthetic data using Python
+
+\section*{INTRODUCTION TO KNN}
+K-Nearest Neighbor (KNN) algorithm is a type of supervised learning algorithm. KNN is used for
+both regression and classification tasks. When KNN is used for regression problems the prediction is
+based on the mean or the median of the K-most similar instances. Similarly, when KNN is used for
+classification, the output can be calculated as the class with the highest frequency from the K-most
+similar instances. Each instance in essence votes for their class and the class with the most votes is
+taken as the prediction. Basically, KNN is a prediction algorithm. The predictions are made by training
+dataset directly. Predictions are made for a new instance (x) by searching through the entire training
+set for the K most similar instances (the neighbors) and summarizing the output variable for those K
+instances. For regression this might be the mean output variable, in classification this might be the mode
+(or most common) class value. To find out which of the K instances in the training dataset are most
+similar to a new input a distance measure is used. For real-valued input variables, the most popular
+distance measure is Euclidean distance. The Euclidean distance is represented by the following formula
+\vspace{2mm}
+\begin{align}
+\centering Eucledian Distance (x, x_i) =  \sqrt{\sum (x_j - x_i_j)^2}
+\end{align}
+
+\vspace{5mm}
+In above formula, the Euclidean distance is calculated as the square root of the sum of the squared
+differences between a new point (x) and an existing point (xi) across all input attributes j. The value
+for K can be found by algorithm tuning. It can be chosen by trying many different values for K (odd
+values) depending upon the size of the dataset and selected best value which suits for our problem.
+KNN works well with a small number of input variables ( p), but struggles when the number of inputs
+is very large. Each input variable can be considered a dimension of a p-dimensional input space. For
+example, if you had two input variables x1 and x2, the input space would be 2-dimensional. In high
+dimensions, points that may be similar may have very large distances. All points will be far away from
+each other and our intuition for distances in simple 2 and 3-dimensional spaces breaks down. This might
+feel unintuitive at first, but this general problem is called the "Curse of Dimensionality".
+\vspace{5mm}
+
+The remaining candidate algorithms are further evaluated and compared using performance metrics such as accuracy, precision, recall, and F1 score. The algorithm with the best performance on the training and testing data is then chosen as the final model.
+\vspace{5mm}
+
+Candidate elimination is an important step in the machine learning process as it helps to narrow down the set of potential algorithms and identify the most suitable option for a particular problem. By carefully evaluating and comparing the available options, it is possible to choose an algorithm that can effectively solve the problem at hand.
+
+\section*{PSEUDO CODE OF KNN}
+
+1. Load the data
+
+2. Initialise the value of k
+
+3. For getting the predicted class, iterate from 1 to total number of training data points
+
+(a) Calculate the Euclidean distance between test data and each row of training data.
+
+(b) Sort the calculated distances in ascending order based on distance values
+
+(c) Get top k rows from the sorted array
+
+(d) Get the most frequent class of these rows
+
+(e) Return the predicted class
+
+\vspace{5mm}
+\section*{DATASET DESCRIPTION}
+
+The dataset identified for this experimental study is Synthetic dataset. The dataset is broadly categorized
+into 3 parts namely Linearly Separable, Non - Linearly Separable and Overlapping Data. These categories
+are further divided into several groups where in each group we are given with separate training and testing
+files. Testing and training data is also divided into different class files. Each class contain two features
+with many feature vectors and both features contain only numeric value.
+
+\vspace{5mm}
+\section*{IMPLEMENTATION CODE FOR KNN ALGORITHM}
+\vspace{5mm}
+\begin{lstlisting}
+# Package imported for different libraries
+import math
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import operator
+import csv
+import random
+from pandas import *
+
+loaddata_train1 = np.loadtxt('class3_train.txt')
+loaddata_train2 = np.loadtxt('class4_train.txt')
+loaddata_test1 = np.loadtxt('class3_test.txt')
+loaddata_test2 = np.loadtxt('class4_test.txt')
+loaddata_train = np.concatenate((loaddata_train1, loaddata_train2), axis=0)
+loaddata_test = np.concatenate((loaddata_test1, loaddata_test2), axis=0)
+
+label1 = np.ones((loaddata_train1.shape[0], 1))
+label2 = np.ones((loaddata_train2.shape[0], 1)) * -1
+r1 = np.append(label1, loaddata_train1, axis=1)
+r2 = np.append(label2, loaddata_train2, axis=1)
+train_data = np.concatenate((r1, r2))
+
+label3 = np.ones((loaddata_test1.shape[0], 1))
+label4 = np.ones((loaddata_test2.shape[0], 1)) * -1
+r3 = np.append(label3, loaddata_test1, axis=1)
+r4 = np.append(label4, loaddata_test2, axis=1)
+test_data = np.concatenate((r3, r4))
+
+plt.scatter(loaddata_train1[:, 0], loaddata_train1[:, 1], marker='o', label='Class1')
+plt.scatter(loaddata_train2[:, 0], loaddata_train2[:, 1], marker='x', label='Class2')
+plt.legend()
+plt.show()
+
+def euclideanDistance(instance1, instance2, length):
+    distance = 0
+    for x in range(length):
+        distance += pow((float(instance1[x]) - float(instance2[x])), 2)
+    return math.sqrt(distance)
+
+def getKNeighbors(train_data, testInstance, k):
+    distances = []
+    length = len(testInstance) - 1
+    for x in range(len(train_data)):
+        dist = euclideanDistance(testInstance, train_data[x], length)
+        distances.append((train_data[x], dist))
+    distances.sort(key=operator.itemgetter(1))
+    neighbors = []
+    for x in range(k):
+        neighbors.append(distances[x][0])
+    return neighbors
+
+def getResponse(neighbors):
+    classVotes = {}
+    for x in range(len(neighbors)):
+        response = neighbors[x][0]
+        if response in classVotes:
+            classVotes[response] += 1
+        else:
+            classVotes[response] = 1
+    sortedVotes = sorted(classVotes.items(), key=operator.itemgetter(1), reverse=True)
+    return sortedVotes[0][0]
+
+def main():
+    l00 = 0
+    l01 = 0
+    l10 = 0
+    l11 = 0
+    split = 0.70
+    print("Train: " + repr(len(train_data)))
+    print("Test: " + repr(len(test_data)))
+    predictions = []
+    k = input("Enter value of k: ")
+    k = int(k)
+    list_pred = []
+    list_act = []
+    for x in range(len(test_data)):
+        neighbors = getKNeighbors(train_data, test_data[x], k)
+        result = getResponse(neighbors)
+        predictions.append(result)
+        list_pred.append(result)
+        list_act.append(test_data[x][0])
+    for i in range(0, len(test_data)):
+        x = list_pred[0]
+        y = list_act[0]
+        if int(list_pred[i]) == -1 and int(list_act[i]) == -1:
+            l00 += 1
+        elif int(list_pred[i]) == -1 and int(list_act[i]) == 1:
+            l01 += 1
+        elif int(list_pred[i]) == 1 and int(list_act[i]) == -1:
+            l10 += 1
+        elif int(list_pred[i]) == 1 and int(list_act[i]) == 1:
+            l11 += 1
+        i += 1
+    a = np.array([[l00, l01], [l10, l11]])
+    print("Confusion Matrix:")
+    print(DataFrame(a, columns=['class_3', 'class_4'], index=['class_3', 'class_4']))
+    prec_0 = (l00 / float(l00 + l10))
+    prec_1 = (l11 / float(l01 + l11))
+    acc = (l00 + l11) * 100 / (l00 + l01 + l10 + l11)
+    print("Accuracy: " + repr(acc))
+    print("Precision:")
+    print("Precision for class 0: " + repr(prec_0))
+    print("Precision for class 1: " + repr(prec_1))
+    print("Average Precision: " + repr((prec_0 + prec_1) / 2))
+    rec_0 = (l00 / float(l00 + l01))
+    rec_1 = (l11 / float(l10 + l11))
+    print("Recall:")
+    print("Recall for class 0: " + repr(rec_0))
+    print("Recall for class 1: " + repr(rec_1))
+    print("Average Recall: " + repr((rec_0 + rec_1) / 2))
+    f0 = (2 * (prec_0 * rec_0) / (prec_0 + rec_0))
+    f1 = (2 * (prec_1 * rec_1) / (prec_1 + rec_1))
+    print("F1 Score:")
+    print("F1 Score for class 0: " + repr(f0))
+    print("F1 Score for class 1: " + repr(f1))
+    print("Average F1 Score: " + repr((f0 + f1) / 2))
+
+main()
+
+\end{lstlisting}
+
+\vspace{130mm}
+\section*{OUTPUT }
+
+1 Output for Linearly Separable Data
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=0.30\textheight]{1.1.png}
+    \includegraphics[width=0.9\textwidth,height=0.45\textheight]{1.2.png}
+\end{figure}
+}
+
+\vspace{50mm}
+
+2 Output for Non-Linearly Separable Data
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=0.30\textheight]{2.1.png}
+    \includegraphics[width=0.9\textwidth,height=0.45\textheight]{2.2.png}
+\end{figure}
+}
+
+\vspace{50mm}
+
+3 Output for Over-lapping Data
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=0.35\textheight]{3.1.png}
+    \includegraphics[width=0.6\textwidth,height=0.40\textheight]{3.2.png}
+\end{figure}
+}
+
+\section*{CONCLUSION}
+The KNN algorithm outperforms for the above cases. The implementation shows that KNN gives 100%
+testing accuracy for linearly separable, non-linearly separable and over-lapping data respectively for used
+dataset.
+\end{justify}
+\end{document}

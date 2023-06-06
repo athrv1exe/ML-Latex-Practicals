@@ -1,0 +1,258 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[a4paper, margin=2cm, left=3cm]{geometry}
+\usepackage{xcolor}
+\usepackage{float}
+% Custom colors for code highlighting
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
+\definecolor{codekeyword}{rgb}{0,0.5,0.3}
+\definecolor{codecomment}{rgb}{0.5,0.5,0.5}
+\definecolor{codestring}{rgb}{0.2,0.2,0.8}
+
+% Python code formatting
+\lstset{
+    language=Python,
+    backgroundcolor=\color{codebackground},
+    keywordstyle=\color{codekeyword},
+    commentstyle=\color{codecomment},
+    stringstyle=\color{codestring},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{codecomment},
+    stepnumber=1,
+    tabsize=4,
+    captionpos=b
+}
+
+\usepackage{graphicx}
+\usepackage{listings}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  commentstyle=\color{green!60!black},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  backgroundcolor=\color{gray!10},
+  frame=tb,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  escapeinside={(*@}{@*)},
+  tabsize=4
+}
+\usepackage{ragged2e}
+\documentclass[8pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{tcolorbox}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{float} % to control float positions
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{geometry} % to adjust margins
+\geometry{a4paper, margin=1in}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\geometry{margin=1in} % set margins to 1 inch
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Atharva Kulkarni \textbf{-Experiment No: 06}}}
+\fancyhead[R]{\thepage}
+\usepackage{mdframed}
+\begin{document}
+% %box ....................................................
+\begin{tcolorbox}[colback=white!10,height=4.3cm]
+
+\thispagestyle{empty} % remove header from the first page
+
+
+\makebox[\textwidth]{%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{BTCOL606: Machine Learning Lab} \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{(Date: 05/06/2023)}\\
+  \end{tabular}%
+}
+
+\vspace{1.2cm}
+\makebox[\textwidth][c]{\textbf{\LARGE Experiment NO : 06}} % center the experiment number
+
+\vspace{1cm}
+
+\makebox[\textwidth]{%
+  \begin{tabular}[t]{@{}ll@{}}
+
+    \textit{Instructor:} Mr. Katkar Atish R. \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[t]{@{}ll@{}}
+    \textit{Name:} Atharva Kulkarni, Roll No: CS3266 \\
+    
+  \end{tabular}%
+}
+
+\end{tcolorbox}
+
+
+
+\begin{flushleft}
+
+\begin{document}
+\begin{justify}
+    
+
+\vspace{7mm}
+
+\section*{AIM}
+Implement and demonstrate the K-means clustering algorithm.
+
+\section*{INTRODUCTION TO K-MEANS CLUSTERING ALGORITHM}
+The K-means clustering algorithm is a popular unsupervised machine learning technique used for grouping data into clusters based on their similarity. It is an iterative algorithm that aims to partition a dataset into K distinct clusters, where K is a predefined number.
+
+\vspace{5mm}
+The algorithm works by assigning data points to the nearest centroid, which represents the center of each cluster. Initially, K centroids are randomly selected from the dataset. Then, the algorithm iteratively updates the centroids and reassigns data points to the nearest centroid until convergence is achieved.
+
+The main steps involved in the K-means clustering algorithm are as follows:
+
+\begin{enumerate}
+    \item Initialization: Randomly select K data points as initial centroids.
+
+    \item Assignment: Assign each data point to the nearest centroid based on a distance metric, commonly the Euclidean distance.
+
+    \item Update: Recalculate the centroids by taking the mean of all data points assigned to each centroid.
+
+    \item Iteration: Repeat the assignment and update steps until convergence or a maximum number of iterations is reached.
+
+    \item Convergence: Stop the algorithm when the centroids no longer change significantly or when the maximum number of iterations is reached.
+\end{enumerate}
+
+The algorithm aims to minimize the within-cluster sum of squares, also known as the inertia or distortion. It seeks to create compact and well-separated clusters by minimizing the total distance between data points and their respective centroids.
+
+\vspace{5mm}
+One challenge in using K-means clustering is determining the optimal value of K, the number of clusters. Various methods, such as the elbow method or silhouette analysis, can be employed to find an appropriate K value.
+
+\vspace{5mm}
+K-means clustering is widely used in various applications, including customer segmentation, image segmentation, anomaly detection, and recommender systems. Its simplicity and efficiency make it a popular choice for exploratory data analysis and clustering tasks.
+
+\section*{DATASET DESCRIPTION}
+
+In this code, the data list represents your dataset, where each element is a data point with its corresponding features. The K variable determines the the number of clusters you want to create.
+
+\vspace{5mm}
+The max-iterations sets the maximum number of iterations for convergence.The code initializes centroids randomly, assigns data points to the closest centroids, updates the centroids based on the mean of the assigned points, and repeats this process until convergence or reaching the maximum number of iterations.
+
+\section*{IMPLEMENTATION CODE FOR K-MEANS CLUSTERING ALGORITHM}
+\begin{lstlisting}[language=Python]
+import random
+import math
+
+# Euclidean distance between two points
+def euclidean_distance(point1, point2):
+    squared_distance = 0
+    for i in range(len(point1)):
+        squared_distance += (point1[i] - point2[i]) ** 2
+    return math.sqrt(squared_distance)
+
+# Initialize centroids randomly
+def initialize_centroids(data, k):
+    centroids = random.sample(data, k)
+    return centroids
+
+# Assign each data point to the closest centroid
+def assign_clusters(data, centroids):
+    clusters = [[] for _ in centroids]
+    for point in data:
+        distances = [euclidean_distance(point, centroid) for centroid in centroids]
+        closest_centroid_index = distances.index(min(distances))
+        clusters[closest_centroid_index].append(point)
+    return clusters
+
+# Update centroids based on the mean of the assigned points
+def update_centroids(clusters):
+    centroids = []
+    for cluster in clusters:
+        centroid = [sum(dim) / len(cluster) for dim in zip(*cluster)]
+        centroids.append(centroid)
+    return centroids
+
+# K-means clustering algorithm
+def k_means(data, k, max_iterations):
+    centroids = initialize_centroids(data, k)
+
+    for _ in range(max_iterations):
+        clusters = assign_clusters(data, centroids)
+        new_centroids = update_centroids(clusters)
+        
+        # Check for convergence
+        if new_centroids == centroids:
+            break
+        
+        centroids = new_centroids
+
+    return clusters, centroids
+
+# Example usage
+data = [
+    [2, 10],
+    [2, 5],
+    [8, 4],
+    [5, 8],
+    [7, 5],
+    [6, 4],
+    [1, 2],
+    [4, 9]
+]
+k = 2
+max_iterations = 100
+
+clusters, centroids = k_means(data, k, max_iterations)
+
+# Print the results
+print("Clusters:")
+for i, cluster in enumerate(clusters):
+    print(f"Cluster {i+1}: {cluster}")
+print("Centroids:")
+for i, centroid in enumerate(centroids):
+    print(f"Centroid {i+1}: {centroid}")
+
+
+\end{lstlisting}
+
+\section*{Output Of K-means Clustering Algorithm}
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth,height=0.24\textheight]{6.1.png}
+     \caption{K-means Clustering Output}
+    
+    \includegraphics[width=0.6\textwidth,height=0.2\textheight]{6.2.png}
+    \caption{Work done by the Algorithm}
+
+\end{figure}
+}
+
+\section*{CONCLUSION}
+In conclusion, the K-means clustering algorithm is a popular unsupervised machine learning technique used for grouping similar data points into clusters. It is a simple and efficient algorithm that can handle large datasets and is widely used in various applications such as customer segmentation, image compression, and anomaly detection.
+
+\end{document}

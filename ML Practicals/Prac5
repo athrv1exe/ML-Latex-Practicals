@@ -1,0 +1,358 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[a4paper, margin=2cm, left=3cm]{geometry}
+\usepackage{xcolor}
+\usepackage{float}
+% Custom colors for code highlighting
+\definecolor{codebackground}{rgb}{0.95,0.95,0.95}
+\definecolor{codekeyword}{rgb}{0,0.5,0.3}
+\definecolor{codecomment}{rgb}{0.5,0.5,0.5}
+\definecolor{codestring}{rgb}{0.2,0.2,0.8}
+
+% Python code formatting
+\lstset{
+    language=Python,
+    backgroundcolor=\color{codebackground},
+    keywordstyle=\color{codekeyword},
+    commentstyle=\color{codecomment},
+    stringstyle=\color{codestring},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{codecomment},
+    stepnumber=1,
+    tabsize=4,
+    captionpos=b
+}
+
+\usepackage{graphicx}
+\usepackage{listings}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  commentstyle=\color{green!60!black},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  backgroundcolor=\color{gray!10},
+  frame=tb,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  escapeinside={(*@}{@*)},
+  tabsize=4
+}
+\usepackage{ragged2e}
+\documentclass[8pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{tcolorbox}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{float} % to control float positions
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{geometry} % to adjust margins
+\geometry{a4paper, margin=1in}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\geometry{margin=1in} % set margins to 1 inch
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Atharva Kulkarni \textbf{-Experiment No: 04}}}
+\fancyhead[R]{\thepage}
+\usepackage{mdframed}
+\begin{document}
+% %box ....................................................
+\begin{tcolorbox}[colback=white!10,height=4.3cm]
+
+\thispagestyle{empty} % remove header from the first page
+
+
+\makebox[\textwidth]{%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{BTCOL606: Machine Learning Lab} \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[b]{@{}ll@{}}
+    \textbf{(Date: 15/05/2023)}\\
+  \end{tabular}%
+}
+
+\vspace{1.2cm}
+\makebox[\textwidth][c]{\textbf{\LARGE Experiment NO : 04}} % center the experiment number
+
+\vspace{1cm}
+
+\makebox[\textwidth]{%
+  \begin{tabular}[t]{@{}ll@{}}
+
+    \textit{Instructor:} Mr. Katkar Atish R. \\
+  \end{tabular}%
+  \hfill%
+  \begin{tabular}[t]{@{}ll@{}}
+    \textit{Name:} Atharva Kulkarni, Roll No: CS3266 \\
+    
+  \end{tabular}%
+}
+
+\end{tcolorbox}
+
+
+
+\begin{flushleft}
+
+\begin{document}
+\begin{justify}
+    
+
+\vspace{7mm}
+
+\section*{AIM}
+Implementation of simple multiple linear regression using Python
+
+\section*{INTRODUCTION TO LINEAR REGRESSION}
+relationship is drawn in a two-dimensional space (between two variables), a straight line is found. Linear
+regression is used for finding linear relationship between target and one or more predictors. Linear
+regression performs the task to predict a dependent variable value (y) based on a given independent
+variable (x). This regression technique finds out a linear relationship between x (input) and y(output).
+Hence, the name is Linear Regression.
+There are two types of linear regression-
+— Simple linear regression
+— Multiple linear regression
+
+\textbf{Simple linear regression}
+is useful for finding relationship between two continuous variables. One is predictor or independent
+variable and other is response or dependent variable. It looks for statistical relationship but not deterministic
+relationship. Relationship between two variables is said to be deterministic if one variable can
+be accurately expressed by the other. For example, using temperature in degree Celsius it is possible
+to accurately predict Fahrenheit. Statistical relationship is not accurate in determining relationship between
+two variables. For example, relationship between height and weight. The core idea is to obtain a
+line that best fits the data. The best fit line is the one for which total prediction error (all data points)
+are as small as possible. Error is the distance between the point to the regression line.The equation for
+plotting a line using simple linear regression :
+
+\begin{align}
+\centering y = mx + c
+\end{align}
+\vspace{2mm}
+
+Where b is the intercept and m is the slope of the line. The linear regression algorithm gives the most
+optimal value for the intercept and the slope (in two dimensions). The y and x variables remain the
+same, since they are the data features and cannot be changed. There can be multiple straight lines
+depending upon the values of intercept and slope. Multiple linear regression use the concept of simple
+linear regression but in multiple regression more then two variable exist. This is called multiple linear
+regression. For instance, consider a scenario where you have to predict the price of the house based
+upon its area, number of bedrooms, the average income of the people in the area, the age of the house,
+and so on. In this case, the dependent variable(target variable) is dependent upon several independent
+variables. A regression model involving multiple variables can be represented as :
+
+\begin{align}
+\centering \textit{y = b0 + m1b1 + m2b2 + m3b3 + ......mnbn}
+\end{align}
+
+
+This is the equation of a hyperplane, where b1, b2, b3.....bn are independent variable and slopes for
+different planes are given as m1, m2, m3.....mn. A linear regression model in two dimensions is a straight
+line, in three dimensions it is a plane, and in more than three dimensions, a hyperplane.
+
+
+
+\section*{PERFORMANCE MEASURE}
+
+Performance measure is required to evaluate the performance of the algorithm. To measure the performance of algorithm we want the total number of features vectors (n), actual(yj ) and predicted values(yb).
+For regression algorithms, three evaluation metrics are commonly used : Mean Absolute Error (MAE) MAE is the mean of the absolute value of the errors. It is calculated as :
+
+Mean Squared Error (MSE) MSE is the mean of the squared errors and is calculated as :
+
+Root Mean Squared Error (RMSE) RMSE is the square root of the mean of the squared errors :
+
+
+\vspace{5mm}
+\section*{DATASET DESCRIPTION}
+
+In this experimental study we have used two different datasets (weather dataset winequality dataset) for
+implementation, one for implementing simple linear regression and another for implementing multiple
+linear regression : The dataset identified for simple linear regression experimental study is Weather
+dataset. The dataset has 32 columns and 119041 rows. In 32 columns data of min temprature , maximum
+temprature, humidity, mean temprature etc. is given. The dataset identified for multiple linear regression
+experimental study is Winequality dataset. The dataset has 13 columns and 1600 rows. In 13 columns
+data of fixed acidity, volatile acidity, citric acid, residual sugar, chlorides etc. is given.
+
+\vspace{5mm}
+\section*{IMPLEMENTATION CODE FOR SIMPLE LINEAR REGRESSION}
+\vspace{5mm}
+\begin{lstlisting}
+# Packages imported from different libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as seabornInstance
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+# Loading CSV dataset using pandas
+dataset = pd.read_csv('weather.csv')
+
+# Display the shape of the dataset
+dataset.shape
+
+# Show dataset
+dataset.describe()
+
+# Plotting two attributes of the dataset
+dataset.plot(x='MinTemp', y='MaxTemp', style='o')
+plt.title('MinTemp vs MaxTemp')
+plt.xlabel('MinTemp')
+plt.ylabel('MaxTemp')
+plt.show()
+
+# Plot graph for MaxTemp
+plt.figure(figsize=(15, 10))
+plt.tight_layout()
+seabornInstance.displot(dataset['MaxTemp'])
+
+# Assigning MinTemp values to X & MaxTemp values to Y
+X = dataset['MinTemp'].values.reshape(-1, 1)
+y = dataset['MaxTemp'].values.reshape(-1, 1)
+
+# Splitting train & test data in 8:2 ratio
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Importing LinearRegression model in regressor
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)  # Training the algorithm
+
+# To retrieve the intercept
+print(regressor.intercept_)
+
+# For retrieving the slope
+print(regressor.coef_)
+
+# Finding predicted values for X_test data
+y_pred = regressor.predict(X_test)
+
+# Comparing the actual output values for X_test with the predicted values
+df = pd.DataFrame({'Actual': y_test.flatten(), 'Predicted': y_pred.flatten()})
+df
+
+# Plotting actual & predicted values for initial 25 values
+df1 = df.head(25)
+df1.plot(kind='bar', figsize=(16, 10))
+plt.grid(which='major', linestyle='-', linewidth='0.5', color='green')
+plt.grid(which='minor', linestyle=':', linewidth='0.5', color='black')
+plt.show()
+
+# Plotting straight line with the test data
+plt.scatter(X_test, y_test, color='gray')
+plt.plot(X_test, y_pred, color='red', linewidth=2)
+plt.show()
+
+# Printing different errors
+print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))
+print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))
+print('Root Mean Squared Error:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
+
+\end{lstlisting}
+
+\vspace{130mm}
+\section*{OUTPUT FOR SIMPLE LINEAR REGRESSION }
+
+\vspace{10mm}
+\textbf{1 Output from plt.show() ::}
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=0.30\textheight]{5.1.png}
+
+\end{figure}
+}
+
+\vspace{5mm}
+
+\textbf{2 Output for Non-Linearly Separable Data}
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth,height=0.35\textheight]{5.2.png}
+    
+\end{figure}
+}
+
+\vspace{50mm}
+
+\textbf{3 Output for Over-lapping Data}
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth,height=0.28\textheight]{5.3.png}
+    
+\end{figure}
+}
+
+\vspace{5mm}
+\textbf{4 Line plotted for simple linear regression}
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth,height=0.28\textheight]{5.4.png}
+    \includegraphics[width=0.9\textwidth,height=0.1\textheight]{5.5.png}
+\end{figure}
+}
+
+\vspace{50mm}
+
+\section*{IMPLEMENTATION CODE FOR Multiple LINEAR REGRESSION }
+
+\textbf{5 Output from dataset.describe() :}
+
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth,height=0.28\textheight]{5.5.5.png}\textbf{}
+    
+\end{figure}
+
+\vspace{5mm}
+\textbf{6 Graph for quality}
+
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth,height=0.45\textheight]{5.6.png}
+    
+\end{figure}
+
+\vspace{70mm}
+\textbf{7 List of coefficient for different attributes :}
+{\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth,height=0.4\textheight]{5.7.png}
+    \includegraphics[width=0.7\textwidth,height=0.1\textheight]{5.8.png}
+    
+\end{figure}
+
+\vspace{5mm}
+
+\section*{CONCLUSION}
+Simple linear regression gave 4.19 root mean squared error, which is more than 10 percent of the
+mean value of the percent of all the temperature i.e. 22.41. This means that our algorithm was not
+very accurate but can still make reasonably good predictions. Multiple linear regression gave 0.62
+root mean squared error, which is slightly greater than 10 percent of the mean value which is 5.63. This
+means that our algorithm was not very accurate but can still make reasonably good predictions..
+\end{justify}
+\end{document}
